@@ -1,0 +1,30 @@
+{
+  "header": {
+    "brand": "小小鉤針日常",
+    "brandSubtitle": "Crochet",
+    "instagram": "Instagram"
+  },
+  "intro": {
+    "subtitle": "Crochet Portfolio",
+    "title": "手作鉤針",
+    "description": "翻動線材的瞬間，日常也能被柔軟包圍。"
+  },
+  "project": {
+    "materials": "線材",
+    "timeSpent": "製作時間",
+    "notes": "創作心得",
+    "listLabel": "作品列表"
+  },
+  "actions": {
+    "close": "關閉",
+    "closeDetail": "關閉詳情",
+    "switchToImage": "切換到第 {index} 張圖片"
+  },
+  "footer": {
+    "responsive": "以 RWD 兩欄式呈現 · 適用桌機與手機瀏覽"
+  },
+  "categories": {
+    "hairAccessory": "髮飾 / 日常使用",
+    "earphoneCase": "耳機包 / 日常使用"
+  }
+}

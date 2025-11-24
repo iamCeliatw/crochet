@@ -1,0 +1,30 @@
+{
+  "header": {
+    "brand": "Crochet Daily",
+    "brandSubtitle": "Crochet",
+    "instagram": "Instagram"
+  },
+  "intro": {
+    "subtitle": "Crochet Portfolio",
+    "title": "Handmade Crochet",
+    "description": "In the moment of turning the yarn, everyday life can be embraced by softness."
+  },
+  "project": {
+    "materials": "Materials",
+    "timeSpent": "Time Spent",
+    "notes": "Notes",
+    "listLabel": "Project List"
+  },
+  "actions": {
+    "close": "Close",
+    "closeDetail": "Close Detail",
+    "switchToImage": "Switch to image {index}"
+  },
+  "footer": {
+    "responsive": "Responsive two-column layout · Optimized for desktop and mobile"
+  },
+  "categories": {
+    "hairAccessory": "Hair Accessory / Daily Use",
+    "earphoneCase": "Earphone Case / Daily Use"
+  }
+}
