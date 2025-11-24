@@ -109,7 +109,7 @@ export default function CrochetPortfolioPage() {
             </div>
 
             <a
-              href="https://www.instagram.com/your_instagram"
+              href="https://www.instagram.com/shuu_chang"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300/70 px-2.5 py-1 text-sm text-[#666666] transition hover:border-neutral-400 hover:bg-white/70 sm:gap-2 sm:px-3"
