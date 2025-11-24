@@ -20,9 +20,6 @@
     "closeDetail": "關閉詳情",
     "switchToImage": "切換到第 {index} 張圖片"
   },
-  "footer": {
-    "responsive": "以 RWD 兩欄式呈現 · 適用桌機與手機瀏覽"
-  },
   "categories": {
     "hairAccessory": "髮飾 / 日常使用",
     "earphoneCase": "耳機包 / 日常使用"
