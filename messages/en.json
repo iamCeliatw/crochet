@@ -20,9 +20,6 @@
     "closeDetail": "Close Detail",
     "switchToImage": "Switch to image {index}"
   },
-  "footer": {
-    "responsive": "Responsive two-column layout · Optimized for desktop and mobile"
-  },
   "categories": {
     "hairAccessory": "Hair Accessory / Daily Use",
     "earphoneCase": "Earphone Case / Daily Use"

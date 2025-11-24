@@ -20,9 +20,6 @@
     "closeDetail": "詳細を閉じる",
     "switchToImage": "画像 {index} に切り替え"
   },
-  "footer": {
-    "responsive": "レスポンシブ2カラムレイアウト・デスクトップとモバイルに対応"
-  },
   "categories": {
     "hairAccessory": "ヘアアクセサリー / 日常使用",
     "earphoneCase": "イヤホンケース / 日常使用"
