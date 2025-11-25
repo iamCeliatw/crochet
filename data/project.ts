@@ -8,6 +8,7 @@ type Project = {
   description: { [key: string]: string };
   coverImage: string;
   images: string[];
+  colorPalette: string[]; // Hex color codes for yarn colors
 };
 
 export const projects: Project[] = [
@@ -41,6 +42,7 @@ export const projects: Project[] = [
     },
     coverImage: "/projects/project-1_1.jpg",
     images: ["/projects/project-1_1.jpg", "/projects/project-1_2.jpg"],
+    colorPalette: ["#C41E3A", "#228B22"],
   },
   {
     id: 2,
@@ -72,5 +74,6 @@ export const projects: Project[] = [
     },
     coverImage: "/projects/project-2_1.jpg",
     images: ["/projects/project-2_1.jpg", "/projects/project-2_2.jpg"],
+    colorPalette: ["#B4C7D9", "#F4C5D0", "#8FBC8F", "#A67B5B"],
   },
 ];

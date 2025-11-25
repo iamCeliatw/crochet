@@ -13,7 +13,8 @@
     "materials": "線材",
     "timeSpent": "製作時間",
     "notes": "創作心得",
-    "listLabel": "作品列表"
+    "listLabel": "作品列表",
+    "colorPalette": "作品色票"
   },
   "actions": {
     "close": "關閉",

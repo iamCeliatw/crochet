@@ -13,7 +13,8 @@
     "materials": "Materials",
     "timeSpent": "Time Spent",
     "notes": "Notes",
-    "listLabel": "Project List"
+    "listLabel": "Project List",
+    "colorPalette": "Yarn Palette"
   },
   "actions": {
     "close": "Close",
