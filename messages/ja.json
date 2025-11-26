@@ -13,7 +13,8 @@
     "materials": "素材",
     "timeSpent": "制作時間",
     "notes": "制作ノート",
-    "listLabel": "作品リスト"
+    "listLabel": "作品リスト",
+    "colorPalette": "カラーパレット"
   },
   "actions": {
     "close": "閉じる",
