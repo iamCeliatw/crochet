@@ -19,7 +19,24 @@
   "actions": {
     "close": "閉じる",
     "closeDetail": "詳細を閉じる",
-    "switchToImage": "画像 {index} に切り替え"
+    "switchToImage": "画像 {index} に切り替え",
+    "order": "注文したい"
+  },
+  "order": {
+    "title": "注文お問い合わせ",
+    "name": "お名前",
+    "namePlaceholder": "お名前を入力してください",
+    "contactMethod": "連絡方法",
+    "quantity": "数量",
+    "customization": "カスタマイズ",
+    "customizationPlaceholder": "例：ピンク色、大きめサイズ...",
+    "submit": "お問い合わせ送信",
+    "submitting": "送信中...",
+    "notice": "お選びいただいた方法で、できるだけ早くご連絡いたします",
+    "successTitle": "お問い合わせを受付ました！",
+    "successMessage": "できるだけ早くご連絡いたします。ご支援ありがとうございます ♡",
+    "invalidEmail": "有効なメールアドレスを入力してください",
+    "submitError": "送信に失敗しました。もう一度お試しください"
   },
   "categories": {
     "hairAccessory": "ヘアアクセサリー / 日常使用",

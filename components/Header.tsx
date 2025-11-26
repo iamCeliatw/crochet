@@ -29,7 +29,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => switchLocale("zh-TW")}
-              className={`px-1.5 py-0.5 text-[11px] font-medium transition rounded-full sm:px-2 sm:py-1 sm:text-xs ${
+              className={`cursor-pointer px-1.5 py-0.5 text-[11px] font-medium transition rounded-full sm:px-2 sm:py-1 sm:text-xs ${
                 locale === "zh-TW"
                   ? "bg-white text-[#333333] shadow-sm"
                   : "text-[#999999] hover:text-[#666666]"
@@ -40,7 +40,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => switchLocale("en")}
-              className={`px-1.5 py-0.5 text-[11px] font-medium transition rounded-full sm:px-2 sm:py-1 sm:text-xs ${
+              className={`cursor-pointer px-1.5 py-0.5 text-[11px] font-medium transition rounded-full sm:px-2 sm:py-1 sm:text-xs ${
                 locale === "en"
                   ? "bg-white text-[#333333] shadow-sm"
                   : "text-[#999999] hover:text-[#666666]"
@@ -51,7 +51,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => switchLocale("ja")}
-              className={`px-1.5 py-0.5 text-[11px] font-medium transition rounded-full sm:px-2 sm:py-1 sm:text-xs ${
+              className={`cursor-pointer px-1.5 py-0.5 text-[11px] font-medium transition rounded-full sm:px-2 sm:py-1 sm:text-xs ${
                 locale === "ja"
                   ? "bg-white text-[#333333] shadow-sm"
                   : "text-[#999999] hover:text-[#666666]"

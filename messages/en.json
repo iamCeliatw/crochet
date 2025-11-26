@@ -19,7 +19,24 @@
   "actions": {
     "close": "Close",
     "closeDetail": "Close Detail",
-    "switchToImage": "Switch to image {index}"
+    "switchToImage": "Switch to image {index}",
+    "order": "Order Inquiry"
+  },
+  "order": {
+    "title": "Order Inquiry",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "contactMethod": "Contact Method",
+    "quantity": "Quantity",
+    "customization": "Customization",
+    "customizationPlaceholder": "e.g., pink color, larger size...",
+    "submit": "Submit Inquiry",
+    "submitting": "Submitting...",
+    "notice": "We'll contact you soon via your preferred method",
+    "successTitle": "Inquiry Received!",
+    "successMessage": "We'll get back to you soon. Thank you for your support ♡",
+    "invalidEmail": "Please enter a valid email address",
+    "submitError": "Submission failed, please try again"
   },
   "categories": {
     "hairAccessory": "Hair Accessory / Daily Use",
