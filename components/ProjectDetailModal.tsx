@@ -1,8 +1,10 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, ShoppingBag } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
+import OrderModal from "./OrderModal";
 
 type Project = {
   id: number;
@@ -38,6 +40,8 @@ export default function ProjectDetailModal({
   onImageSelect,
   t,
 }: ProjectDetailModalProps) {
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+
   if (!project) return null;
 
   return (
@@ -185,18 +189,34 @@ export default function ProjectDetailModal({
               </p>
             </div>
 
-            <div className="mt-2 flex items-center justify-between gap-3 text-[11px] text-[#999999]">
-              <span>{t("footer.responsive")}</span>
+            <div className="mt-2 flex items-center justify-between gap-2 text-[11px]">
+              <button
+                type="button"
+                onClick={() => setIsOrderModalOpen(true)}
+                className="cursor-pointer inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-[#333333] px-3 py-2 text-sm font-medium text-white transition hover:bg-[#444444]"
+              >
+                <ShoppingBag className="h-3.5 w-3.5" />
+                <span>{t("actions.order")}</span>
+              </button>
               <button
                 type="button"
                 onClick={onClose}
-                className="inline-flex items-center gap-1 rounded-full border border-neutral-200/80 px-3 py-1 text-[11px] text-[#666666] transition hover:border-neutral-400 hover:bg-white/80"
+                className="inline-flex items-center gap-1 rounded-lg border border-neutral-200/80 px-3 py-2 text-[11px] text-[#666666] transition hover:border-neutral-400 hover:bg-white/80"
               >
                 <span>{t("actions.close")}</span>
               </button>
             </div>
           </div>
         </motion.div>
+
+        {/* Order Modal */}
+        <OrderModal
+          projectTitle={project.title[locale] || project.title["zh-TW"]}
+          projectId={project.id}
+          isOpen={isOrderModalOpen}
+          onClose={() => setIsOrderModalOpen(false)}
+          t={t}
+        />
       </motion.div>
     </AnimatePresence>
   );

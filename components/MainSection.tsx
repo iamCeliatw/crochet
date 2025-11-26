@@ -61,7 +61,7 @@ export default function MainSection({
             <button
               type="button"
               onClick={() => onProjectClick(project)}
-              className="group block w-full overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-neutral-200/70 transition hover:-translate-y-1 hover:shadow-md hover:ring-neutral-300"
+              className="cursor-pointer group block w-full overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-neutral-200/70 transition hover:-translate-y-1 hover:shadow-md hover:ring-neutral-300"
             >
               <div className="relative">
                 <div className="overflow-hidden">

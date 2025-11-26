@@ -19,7 +19,24 @@
   "actions": {
     "close": "關閉",
     "closeDetail": "關閉詳情",
-    "switchToImage": "切換到第 {index} 張圖片"
+    "switchToImage": "切換到第 {index} 張圖片",
+    "order": "我想訂購"
+  },
+  "order": {
+    "title": "訂購詢問",
+    "name": "姓名",
+    "namePlaceholder": "請輸入您的姓名",
+    "contactMethod": "聯絡方式",
+    "quantity": "數量",
+    "customization": "客製化需求",
+    "customizationPlaceholder": "例如：想要改成粉色、需要較大尺寸...",
+    "submit": "送出詢問",
+    "submitting": "送出中...",
+    "notice": "我們會盡快透過您選擇的方式與您聯繫",
+    "successTitle": "已收到您的詢問！",
+    "successMessage": "我們會盡快與您聯繫，感謝您的支持 ♡",
+    "invalidEmail": "請輸入有效的 Email 格式",
+    "submitError": "送出失敗，請稍後再試"
   },
   "categories": {
     "hairAccessory": "髮飾 / 日常使用",
