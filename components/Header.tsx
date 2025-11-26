@@ -61,7 +61,7 @@ export default function Header() {
             </button>
           </div>
 
-          <a
+          {/* <a
             href="https://www.instagram.com/shuu_chang"
             target="_blank"
             rel="noreferrer"
@@ -69,7 +69,7 @@ export default function Header() {
           >
             <Instagram className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             <span className="hidden sm:inline">{t("header.instagram")}</span>
-          </a>
+          </a> */}
         </div>
       </div>
     </header>
