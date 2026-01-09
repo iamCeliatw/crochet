@@ -4,7 +4,6 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const {
-      projectId,
       projectTitle,
       name,
       contactMethod,
@@ -26,18 +25,20 @@ export async function POST(request: NextRequest) {
     }
 
     // 組合訊息
-    const message = `🎨 新訂單詢問！
-
-    📦 作品：${projectTitle}
-    👤 姓名：${name}
-    📞 聯絡方式：${contactMethod}
-    📱 聯絡資訊：${contact}
-    🔢 數量：${quantity}
-    ✨ 客製化需求：${customization || "無"}
-
-    ⏰ 時間：${new Date().toLocaleString("zh-TW", {
-      timeZone: "Asia/Taipei",
-    })}`;
+    const message = [
+      "🎨 新訂單詢問！",
+      "",
+      `📦 作品：${projectTitle}`,
+      `👤 姓名：${name}`,
+      `📞 聯絡方式：${contactMethod}`,
+      `📱 聯絡資訊：${contact}`,
+      `🔢 數量：${quantity}`,
+      `✨ 客製化需求：${customization || "無"}`,
+      "",
+      `⏰ 時間：${new Date().toLocaleString("zh-TW", {
+        timeZone: "Asia/Taipei",
+      })}`,
+    ].join("\n");
 
     const linePayload = {
       to: LINE_USER_ID,

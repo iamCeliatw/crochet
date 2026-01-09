@@ -44,10 +44,10 @@ export default function MainSection({
         </p>
       </section>
 
-      {/* Masonry Grid */}
+      {/* Grid Layout */}
       <section
         aria-label={t("project.listLabel")}
-        className="columns-1 gap-5 sm:columns-2 lg:columns-3"
+        className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
       >
         {projects.map((project: Project) => (
           <motion.article
@@ -56,34 +56,34 @@ export default function MainSection({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="mb-5 break-inside-avoid"
+            className="flex flex-col"
           >
             <button
               type="button"
               onClick={() => onProjectClick(project)}
-              className="cursor-pointer group block w-full overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-neutral-200/70 transition hover:-translate-y-1 hover:shadow-md hover:ring-neutral-300"
+              className="cursor-pointer group flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-neutral-200/70 transition hover:-translate-y-1 hover:shadow-md hover:ring-neutral-300"
             >
-              <div className="relative">
+              <div className="relative flex-shrink-0">
                 <div className="overflow-hidden">
                   <Image
                     src={project.coverImage}
                     alt={project.title[locale] || project.title["zh-TW"]}
                     width={900}
                     height={1200}
-                    className="h-auto w-full transform-gpu transition duration-500 group-hover:scale-[1.03]"
+                    className="aspect-[3/4] w-full object-cover transform-gpu transition duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
               </div>
 
-              <div className="space-y-1.5 px-4 pb-4 pt-3 text-left">
+              <div className="flex flex-1 flex-col space-y-1.5 px-4 pb-4 pt-3 text-left">
                 <p className="text-xs font-medium tracking-[0.1em] text-[#666666] uppercase">
                   {project.category[locale] || project.category["zh-TW"]}
                 </p>
                 <h2 className="text-base font-semibold leading-snug">
                   {project.title[locale] || project.title["zh-TW"]}
                 </h2>
-                <p className="text-xs text-[#666666]">
+                <p className="flex-1 text-xs text-[#666666]">
                   {project.materials[locale] || project.materials["zh-TW"]} ·{" "}
                   {project.timeSpent[locale] || project.timeSpent["zh-TW"]}
                 </p>

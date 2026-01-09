@@ -40,6 +40,8 @@
   },
   "categories": {
     "hairAccessory": "Hair Accessory / Daily Use",
-    "earphoneCase": "Earphone Case / Daily Use"
+    "earphoneCase": "Earphone Case / Daily Use",
+    "accessory": "Accessory / Daily Use",
+    "coaster": "Coaster / Home Use"
   }
 }
