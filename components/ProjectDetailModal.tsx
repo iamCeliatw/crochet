@@ -80,7 +80,24 @@ export default function ProjectDetailModal({
           {/* Left: Image Slider */}
           <div className="relative w-full bg-neutral-100/80 lg:w-1/2">
             {project.images.length > 0 && (
-              <div className="relative h-full min-h-[260px] sm:min-h-[340px]">
+              <motion.div
+                className="relative h-full min-h-[260px] sm:min-h-[340px] cursor-grab active:cursor-grabbing"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = Math.abs(offset.x) * velocity.x;
+
+                  // 向右滑動（顯示上一張）
+                  if (swipe > 500 || offset.x > 100) {
+                    onPrevImage();
+                  }
+                  // 向左滑動（顯示下一張）
+                  else if (swipe < -500 || offset.x < -100) {
+                    onNextImage();
+                  }
+                }}
+              >
                 <Image
                   src={project.images[currentImageIndex]}
                   alt={`${
@@ -88,9 +105,9 @@ export default function ProjectDetailModal({
                   } image ${currentImageIndex + 1}`}
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-contain p-4 sm:p-6"
+                  className="object-contain p-4 sm:p-6 pointer-events-none"
                 />
-              </div>
+              </motion.div>
             )}
 
             {/* Slider Controls */}

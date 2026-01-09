@@ -30,7 +30,7 @@ export default function MainSection({
   t,
 }: MainSectionProps) {
   return (
-    <main className="mx-auto max-w-6xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+    <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 sm:px-6 sm:pt-24 lg:px-8">
       {/* Intro / Subheader */}
       <section className="mb-8 space-y-2">
         <p className="text-xs font-medium tracking-[0.3em] text-[#666666] uppercase">
