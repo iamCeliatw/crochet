@@ -36,7 +36,10 @@
     "successTitle": "已收到您的詢問！",
     "successMessage": "我們會盡快與您聯繫，感謝您的支持 ♡",
     "invalidEmail": "請輸入有效的 Email 格式",
-    "submitError": "送出失敗，請稍後再試"
+    "submitError": "送出失敗，請稍後再試",
+    "addLinePrompt": "加入 LINE 好友，即時溝通更方便",
+    "addLineFriend": "加入 LINE 好友",
+    "addLineHint": "透過 LINE 聯繫，我們能更快回覆您"
   },
   "categories": {
     "hairAccessory": "髮飾 / 日常使用",

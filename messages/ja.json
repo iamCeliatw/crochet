@@ -36,7 +36,10 @@
     "successTitle": "お問い合わせを受付ました！",
     "successMessage": "できるだけ早くご連絡いたします。ご支援ありがとうございます ♡",
     "invalidEmail": "有効なメールアドレスを入力してください",
-    "submitError": "送信に失敗しました。もう一度お試しください"
+    "submitError": "送信に失敗しました。もう一度お試しください",
+    "addLinePrompt": "LINEで友だち追加すると、より便利にやり取りできます",
+    "addLineFriend": "LINE友だち追加",
+    "addLineHint": "LINEでのご連絡なら、より早くご返信できます"
   },
   "categories": {
     "hairAccessory": "ヘアアクセサリー / 日常使用",

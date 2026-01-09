@@ -36,7 +36,10 @@
     "successTitle": "Inquiry Received!",
     "successMessage": "We'll get back to you soon. Thank you for your support ♡",
     "invalidEmail": "Please enter a valid email address",
-    "submitError": "Submission failed, please try again"
+    "submitError": "Submission failed, please try again",
+    "addLinePrompt": "Add us on LINE for easier communication",
+    "addLineFriend": "Add LINE Friend",
+    "addLineHint": "Contact us via LINE for faster responses"
   },
   "categories": {
     "hairAccessory": "Hair Accessory / Daily Use",
