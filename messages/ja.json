@@ -40,6 +40,8 @@
   },
   "categories": {
     "hairAccessory": "ヘアアクセサリー / 日常使用",
-    "earphoneCase": "イヤホンケース / 日常使用"
+    "earphoneCase": "イヤホンケース / 日常使用",
+    "accessory": "アクセサリー / 日常使用",
+    "coaster": "コースター / ホームユース"
   }
 }
