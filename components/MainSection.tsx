@@ -44,10 +44,10 @@ export default function MainSection({
         </p>
       </section>
 
-      {/* Grid Layout */}
+      {/* Grid Layout - 手機版 2 列，平板 2 列，桌面 3 列 */}
       <section
         aria-label={t("project.listLabel")}
-        className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:gap-5"
       >
         {projects.map((project: Project) => (
           <motion.article
@@ -69,30 +69,29 @@ export default function MainSection({
                     src={project.coverImage}
                     alt={project.title[locale] || project.title["zh-TW"]}
                     width={900}
-                    height={1200}
-                    className="aspect-[3/4] w-full object-cover transform-gpu transition duration-500 group-hover:scale-[1.03]"
+                    height={900}
+                    className="aspect-square w-full object-cover transform-gpu transition duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
               </div>
 
-              <div className="flex flex-1 flex-col space-y-1.5 px-4 pb-4 pt-3 text-left">
-                <p className="text-xs font-medium tracking-[0.1em] text-[#666666] uppercase">
+              <div className="flex flex-1 flex-col space-y-1 px-3 pb-3 pt-2.5 text-left sm:space-y-1.5 sm:px-4 sm:pb-4 sm:pt-3">
+                <p className="text-[10px] font-medium tracking-[0.1em] text-[#666666] uppercase sm:text-xs">
                   {project.category[locale] || project.category["zh-TW"]}
                 </p>
-                <h2 className="text-base font-semibold leading-snug">
+                <h2 className="text-sm font-semibold leading-snug sm:text-base">
                   {project.title[locale] || project.title["zh-TW"]}
                 </h2>
-                <p className="flex-1 text-xs text-[#666666]">
-                  {project.materials[locale] || project.materials["zh-TW"]} ·{" "}
+                <p className="flex-1 text-[11px] text-[#666666] sm:text-xs">
                   {project.timeSpent[locale] || project.timeSpent["zh-TW"]}
                 </p>
                 {/* Color Palette */}
-                <div className="flex items-center gap-1.5 pt-0.5">
+                <div className="flex items-center gap-1 pt-0.5 sm:gap-1.5">
                   {project.colorPalette.map((color, index) => (
                     <div
                       key={index}
-                      className="h-3 w-3 rounded-full ring-1 ring-neutral-200/60"
+                      className="h-2.5 w-2.5 rounded-full ring-1 ring-neutral-200/60 sm:h-3 sm:w-3"
                       style={{ backgroundColor: color }}
                       title={color}
                     />

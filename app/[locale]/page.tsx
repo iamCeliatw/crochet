@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { projects } from "../../data/project";
 import ProjectDetailModal from "../../components/ProjectDetailModal";
 import Header from "@/components/Header";
 import MainSection from "@/components/MainSection";
+import { trackPageView, trackProjectView } from "@/lib/analytics";
 
 type Project = {
   id: number;
@@ -26,9 +27,16 @@ export default function CrochetPortfolioPage() {
   const [selected, setSelected] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // 追蹤頁面訪問
+  useEffect(() => {
+    trackPageView();
+  }, []);
+
   const handleOpenDetail = (project: Project) => {
     setSelected(project);
     setCurrentImageIndex(0);
+    // 追蹤作品點擊
+    trackProjectView(project.id);
   };
 
   const handleCloseDetail = () => {
