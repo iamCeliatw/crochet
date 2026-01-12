@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send } from "lucide-react";
 import { useState } from "react";
+import { trackOrderSubmission } from "@/lib/analytics";
 
 interface OrderModalProps {
   projectTitle: string;
@@ -91,6 +92,9 @@ export default function OrderModal({
       );
       existingOrders.push(orderData);
       localStorage.setItem("crochet_orders", JSON.stringify(existingOrders));
+
+      // 追蹤訂單提交
+      trackOrderSubmission();
 
       setIsSubmitting(false);
       setIsSuccess(true);
