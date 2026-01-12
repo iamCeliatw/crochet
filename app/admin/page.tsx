@@ -100,12 +100,14 @@ export default function AdminAnalyticsPage() {
                         <div
                           className="h-full bg-gradient-to-r from-blue-400 to-blue-600"
                           style={{
-                            width: `${((views as number) / totalProjectViews) * 100}%`,
+                            width: `${
+                              ((views as number) / totalProjectViews) * 100
+                            }%`,
                           }}
                         ></div>
                       </div>
                       <span className="min-w-[3rem] text-right text-sm font-semibold text-[#333333]">
-                        {views} 次
+                        {views as number} 次
                       </span>
                     </div>
                   </div>
@@ -143,10 +145,14 @@ export default function AdminAnalyticsPage() {
 
         <div className="mt-6 text-center text-xs text-[#999999]">
           數據每 30 秒自動更新
-          {analytics.mode && ` • 模式：${analytics.mode === "memory" ? "記憶體（本地測試）" : "Vercel KV（持久化）"}`}
+          {analytics.mode &&
+            ` • 模式：${
+              analytics.mode === "memory"
+                ? "記憶體（本地測試）"
+                : "Vercel KV（持久化）"
+            }`}
         </div>
       </div>
     </div>
   );
 }
-
