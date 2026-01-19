@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "add-project": "node scripts/add-project.js",
+    "finalize-project": "node scripts/finalize-project.js",
+    "deploy": "node scripts/deploy.js"
   },
   "dependencies": {
     "@vercel/kv": "^3.0.0",

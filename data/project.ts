@@ -208,4 +208,37 @@ export const projects: Project[] = [
     images: ["/projects/project-6_1.jpg", "/projects/project-6_2.jpg"],
     colorPalette: ["#F58F84"],
   },
+  {
+    id: 7,
+    slug: "mesh-cup-holder",
+    title: {
+      "zh-TW": "手混線網狀飲料提袋",
+      en: "Earth Tone Mesh Cup Holder",
+      ja: "アースカラーのメッシュドリンクホルダー",
+    },
+    category: {
+      "zh-TW": "飲料提袋 / 日常使用",
+      en: "Cup Holder / Daily Use",
+      ja: "ドリンクホルダー / デイリーユース",
+    },
+    materials: {
+      "zh-TW": "手混線、5mm 勾針",
+      en: "Hand-mixed yarn, 5mm crochet hook",
+      ja: "ハンドミックス糸、5mmかぎ針",
+    },
+    timeSpent: {
+      "zh-TW": "約 1.5 小時",
+      en: "About 1.5 hours",
+      ja: "約1.5時間",
+    },
+    description: {
+      "zh-TW":
+        "溫潤的手混線，編織出實用又時尚的飲料提袋。網狀設計透氣輕盈，提把舒適好握，陪你走過每個需要咖啡因的日子。無論是趕車站還是散步，都是你的溫暖小夥伴。",
+      en: "Earthy tones meet everyday convenience in this cozy mesh cup holder. The open-weave design keeps it light and breathable, while the sturdy handle makes carrying your favorite drink effortless. A handcrafted companion for your daily coffee runs.",
+      ja: "温かみのあるアースカラーの混紡糸で編んだ実用的なドリンクホルダー。メッシュデザインで軽やかに、しっかりとした持ち手で持ち運びも楽々。毎日のコーヒータイムに寄り添う、手作りの相棒です。",
+    },
+    coverImage: "/projects/project-7_1.jpg",
+    images: ["/projects/project-7_1.jpg"],
+    colorPalette: ["#C4A77D", "#D4C4A8", "#8B7355"],
+  },
 ];
