@@ -1,20 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "redis";
+import { createClient as createRedisClient } from "redis";
 
 const KEYS = {
   CLICK_LOGS: "analytics:click_logs",
-};
-
-// 記憶體備用存儲
-const memoryStore = {
-  clickLogs: [] as Array<{
-    type: string;
-    projectId?: number | null;
-    timestamp: string;
-    ip: string;
-    userAgent: string;
-    isOwner?: boolean;
-  }>,
 };
 
 // 獲取 Redis 客戶端（複製自 analytics/route.ts）
@@ -25,7 +13,7 @@ async function getRedisClient() {
   }
 
   try {
-    const client = createClient({
+    const client = createRedisClient({
       url: redisUrl,
       socket: {
         connectTimeout: 5000,
@@ -53,29 +41,17 @@ export async function GET(request: NextRequest) {
 
     const redis = await getRedisClient();
 
-    // 如果 Redis 不可用，返回記憶體數據
     if (!redis) {
-      let logs = [...memoryStore.clickLogs];
-
-      // 過濾
-      if (type) {
-        logs = logs.filter((log) => log.type === type);
-      }
-      if (projectId) {
-        logs = logs.filter((log) => log.projectId === parseInt(projectId));
-      }
-
-      // 排序（最新的在前）
-      logs.sort(
-        (a, b) =>
-          new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+      return NextResponse.json(
+        {
+          logs: [],
+          total: 0,
+          mode: "redis_error",
+          error: "REDIS_URL not configured or Redis unavailable",
+          hint: "Set REDIS_URL in your deployment environment (Vercel).",
+        },
+        { status: 500 }
       );
-
-      return NextResponse.json({
-        logs: logs.slice(0, limit),
-        total: logs.length,
-        mode: "memory",
-      });
     }
 
     // 從 Redis 讀取
@@ -130,13 +106,12 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("❌ 讀取點擊記錄失敗:", error);
 
-    // 降級到記憶體數據
     return NextResponse.json({
-      logs: memoryStore.clickLogs.slice(0, 50),
-      total: memoryStore.clickLogs.length,
-      mode: "memory_fallback",
+      logs: [],
+      total: 0,
+      mode: "redis_error",
       error: error instanceof Error ? error.message : "Unknown error",
-    });
+    }, { status: 500 });
   }
 }
 
