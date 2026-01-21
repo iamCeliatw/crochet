@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
 
     // 從 Redis 讀取
     const logKey = KEYS.CLICK_LOGS;
-    const rawLogs = await redis.lrange(logKey, 0, limit * 2); // 多取一些以便過濾
+    const rawLogs = await redis.lRange(logKey, 0, limit * 2); // 多取一些以便過濾
 
     if (!rawLogs || !Array.isArray(rawLogs)) {
       return NextResponse.json({

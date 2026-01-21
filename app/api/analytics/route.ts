@@ -161,8 +161,8 @@ export async function POST(request: NextRequest) {
 
     // 記錄點擊日誌到 Redis（使用 list，只保留最近 500 筆）
     const logKey = KEYS.CLICK_LOGS;
-    await redis.lpush(logKey, JSON.stringify(clickLog));
-    await redis.ltrim(logKey, 0, 499); // 只保留最近 500 筆
+    await redis.lPush(logKey, JSON.stringify(clickLog));
+    await redis.lTrim(logKey, 0, 499); // 只保留最近 500 筆
 
     return NextResponse.json({ success: true, mode: "redis" });
   } catch (error) {
