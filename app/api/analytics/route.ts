@@ -7,6 +7,7 @@ const KEYS = {
   ORDER_SUBMISSIONS: "analytics:order_submissions",
   LAST_RESET: "analytics:last_reset",
   PROJECT_VIEWS_PREFIX: "analytics:project_views:",
+  CLICK_LOGS: "analytics:click_logs", // 點擊記錄列表
 };
 
 // 記憶體備用存儲（當 Redis 不可用時）
@@ -14,6 +15,14 @@ const memoryStore = {
   pageViews: 0,
   projectViews: {} as Record<number, number>,
   orderSubmissions: 0,
+  clickLogs: [] as Array<{
+    type: string;
+    projectId?: number;
+    timestamp: string;
+    ip: string;
+    userAgent: string;
+    isOwner?: boolean;
+  }>,
 };
 
 // Redis 客戶端單例
@@ -75,6 +84,32 @@ async function initAnalytics(redis: ReturnType<typeof createClient>) {
   }
 }
 
+// 獲取客戶端 IP
+function getClientIP(request: NextRequest): string {
+  const forwarded = request.headers.get("x-forwarded-for");
+  const realIP = request.headers.get("x-real-ip");
+  const ip = forwarded?.split(",")[0] || realIP || "unknown";
+  return ip.trim();
+}
+
+// 判斷是否為網站擁有者（可以設定自己的 IP 或 user agent）
+function isOwner(ip: string, userAgent: string): boolean {
+  const ownerIPs = process.env.OWNER_IPS?.split(",").map((ip) => ip.trim()) || [];
+  const ownerUserAgents = process.env.OWNER_USER_AGENTS?.split(",").map((ua) => ua.trim()) || [];
+  
+  // 檢查 IP
+  if (ownerIPs.length > 0 && ownerIPs.includes(ip)) {
+    return true;
+  }
+  
+  // 檢查 user agent（例如包含特定關鍵字）
+  if (ownerUserAgents.length > 0) {
+    return ownerUserAgents.some((ua) => userAgent.includes(ua));
+  }
+  
+  return false;
+}
+
 // POST: 記錄分析事件
 export async function POST(request: NextRequest) {
   let type: string | undefined;
@@ -85,7 +120,30 @@ export async function POST(request: NextRequest) {
     type = body.type;
     projectId = body.projectId;
 
+    // 獲取客戶端資訊
+    const ip = getClientIP(request);
+    const userAgent = request.headers.get("user-agent") || "unknown";
+    const timestamp = new Date().toISOString();
+    const owner = isOwner(ip, userAgent);
+
     const redis = await getRedisClient();
+
+    // 建立點擊記錄
+    if (!type) {
+      return NextResponse.json(
+        { error: "Type is required" },
+        { status: 400 }
+      );
+    }
+
+    const clickLog = {
+      type,
+      projectId: projectId || undefined,
+      timestamp,
+      ip,
+      userAgent: userAgent.substring(0, 200), // 限制長度
+      isOwner: owner,
+    };
 
     // 如果 Redis 不可用，使用記憶體存儲
     if (!redis) {
@@ -104,6 +162,13 @@ export async function POST(request: NextRequest) {
           memoryStore.orderSubmissions++;
           break;
       }
+      
+      // 記錄到記憶體（只保留最近 100 筆）
+      memoryStore.clickLogs.push(clickLog);
+      if (memoryStore.clickLogs.length > 100) {
+        memoryStore.clickLogs.shift();
+      }
+      
       return NextResponse.json({ success: true, mode: "memory" });
     }
 
@@ -126,6 +191,11 @@ export async function POST(request: NextRequest) {
         await redis.incr(KEYS.ORDER_SUBMISSIONS);
         break;
     }
+
+    // 記錄點擊日誌到 Redis（使用 list，只保留最近 500 筆）
+    const logKey = KEYS.CLICK_LOGS;
+    await redis.lpush(logKey, JSON.stringify(clickLog));
+    await redis.ltrim(logKey, 0, 499); // 只保留最近 500 筆
 
     return NextResponse.json({ success: true, mode: "redis" });
   } catch (error) {
