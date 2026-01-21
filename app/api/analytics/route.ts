@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "redis";
+import { createClient as createRedisClient } from "redis";
 
 // Redis keys
 const KEYS = {
@@ -10,23 +10,8 @@ const KEYS = {
   CLICK_LOGS: "analytics:click_logs", // 點擊記錄列表
 };
 
-// 記憶體備用存儲（當 Redis 不可用時）
-const memoryStore = {
-  pageViews: 0,
-  projectViews: {} as Record<number, number>,
-  orderSubmissions: 0,
-  clickLogs: [] as Array<{
-    type: string;
-    projectId?: number;
-    timestamp: string;
-    ip: string;
-    userAgent: string;
-    isOwner?: boolean;
-  }>,
-};
-
 // Redis 客戶端單例
-let redisClient: ReturnType<typeof createClient> | null = null;
+let redisClient: ReturnType<typeof createRedisClient> | null = null;
 let redisConnectionFailed = false; // 記錄連接是否失敗，避免重複嘗試
 
 // 獲取 Redis 客戶端
@@ -36,13 +21,11 @@ async function getRedisClient() {
 
   const redisUrl = process.env.REDIS_URL;
   if (!redisUrl) {
-    console.log("📊 本地開發模式：使用記憶體存儲");
-    redisConnectionFailed = true;
     return null;
   }
 
   try {
-    redisClient = createClient({
+    redisClient = createRedisClient({
       url: redisUrl,
       socket: {
         connectTimeout: 5000, // 5 秒超時
@@ -70,7 +53,7 @@ async function getRedisClient() {
 }
 
 // 初始化（第一次使用時）
-async function initAnalytics(redis: ReturnType<typeof createClient>) {
+async function initAnalyticsRedis(redis: ReturnType<typeof createRedisClient>) {
   try {
     const lastReset = await redis.get(KEYS.LAST_RESET);
     if (!lastReset) {
@@ -128,6 +111,17 @@ export async function POST(request: NextRequest) {
 
     const redis = await getRedisClient();
 
+    // 只用 Redis：沒有 REDIS_URL / Redis 不可用就直接報錯
+    if (!redis) {
+      return NextResponse.json(
+        {
+          error: "REDIS_URL not configured or Redis unavailable",
+          hint: "Set REDIS_URL in your deployment environment (Vercel).",
+        },
+        { status: 500 }
+      );
+    }
+
     // 建立點擊記錄
     if (!type) {
       return NextResponse.json(
@@ -145,35 +139,8 @@ export async function POST(request: NextRequest) {
       isOwner: owner,
     };
 
-    // 如果 Redis 不可用，使用記憶體存儲
-    if (!redis) {
-      console.log("📊 使用記憶體存儲");
-      switch (type) {
-        case "page_view":
-          memoryStore.pageViews++;
-          break;
-        case "project_view":
-          if (projectId) {
-            memoryStore.projectViews[projectId] =
-              (memoryStore.projectViews[projectId] || 0) + 1;
-          }
-          break;
-        case "order_submission":
-          memoryStore.orderSubmissions++;
-          break;
-      }
-      
-      // 記錄到記憶體（只保留最近 100 筆）
-      memoryStore.clickLogs.push(clickLog);
-      if (memoryStore.clickLogs.length > 100) {
-        memoryStore.clickLogs.shift();
-      }
-      
-      return NextResponse.json({ success: true, mode: "memory" });
-    }
-
     // 使用 Redis
-    await initAnalytics(redis);
+    await initAnalyticsRedis(redis);
 
     switch (type) {
       case "page_view":
@@ -201,29 +168,11 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("❌ Track analytics error:", error);
 
-    // 降級到記憶體存儲
-    if (type) {
-      switch (type) {
-        case "page_view":
-          memoryStore.pageViews++;
-          break;
-        case "project_view":
-          if (projectId) {
-            memoryStore.projectViews[projectId] =
-              (memoryStore.projectViews[projectId] || 0) + 1;
-          }
-          break;
-        case "order_submission":
-          memoryStore.orderSubmissions++;
-          break;
-      }
-    }
-
     return NextResponse.json({
-      success: true,
-      mode: "memory_fallback",
+      success: false,
+      mode: "redis_error",
       error: error instanceof Error ? error.message : "Unknown error",
-    });
+    }, { status: 500 });
   }
 }
 
@@ -232,18 +181,18 @@ export async function GET() {
   try {
     const redis = await getRedisClient();
 
-    // 如果 Redis 不可用，返回記憶體數據
     if (!redis) {
-      console.log("📊 返回記憶體數據");
-      return NextResponse.json({
-        pageViews: memoryStore.pageViews,
-        projectViews: memoryStore.projectViews,
-        orderSubmissions: memoryStore.orderSubmissions,
-        mode: "memory",
-      });
+      return NextResponse.json(
+        {
+          error: "REDIS_URL not configured or Redis unavailable",
+          hint: "Set REDIS_URL in your deployment environment (Vercel).",
+        },
+        { status: 500 }
+      );
     }
 
     // 從 Redis 讀取數據
+    const lastReset = (await redis.get(KEYS.LAST_RESET)) || new Date().toISOString();
     const pageViews = parseInt((await redis.get(KEYS.PAGE_VIEWS)) || "0");
     const orderSubmissions = parseInt(
       (await redis.get(KEYS.ORDER_SUBMISSIONS)) || "0"
@@ -260,6 +209,7 @@ export async function GET() {
     }
 
     return NextResponse.json({
+      lastReset,
       pageViews,
       projectViews,
       orderSubmissions,
@@ -268,13 +218,9 @@ export async function GET() {
   } catch (error) {
     console.error("❌ 讀取數據失敗:", error);
 
-    // 降級到記憶體數據
     return NextResponse.json({
-      pageViews: memoryStore.pageViews,
-      projectViews: memoryStore.projectViews,
-      orderSubmissions: memoryStore.orderSubmissions,
-      mode: "memory_fallback",
+      mode: "redis_error",
       error: error instanceof Error ? error.message : "Unknown error",
-    });
+    }, { status: 500 });
   }
 }
