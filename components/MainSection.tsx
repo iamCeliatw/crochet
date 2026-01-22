@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Link } from "@/i18n/routing";
+import { trackProjectView } from "@/lib/analytics";
 
 type Project = {
   id: number;
@@ -19,16 +21,17 @@ type Project = {
 interface MainSectionProps {
   projects: Project[];
   locale: string;
-  onProjectClick: (project: Project) => void;
   t: (key: string) => string;
 }
 
 export default function MainSection({
   projects,
   locale,
-  onProjectClick,
   t,
 }: MainSectionProps) {
+  const handleProjectClick = (project: Project) => {
+    trackProjectView(project.id);
+  };
   return (
     <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 sm:px-6 sm:pt-24 lg:px-8">
       {/* Intro / Subheader */}
@@ -58,9 +61,9 @@ export default function MainSection({
             transition={{ duration: 0.35, ease: "easeOut" }}
             className="flex flex-col"
           >
-            <button
-              type="button"
-              onClick={() => onProjectClick(project)}
+            <Link
+              href={`/project/${project.slug}`}
+              onClick={() => handleProjectClick(project)}
               className="cursor-pointer group flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-neutral-200/70 transition hover:-translate-y-1 hover:shadow-md hover:ring-neutral-300"
             >
               <div className="relative flex-shrink-0">
@@ -98,7 +101,7 @@ export default function MainSection({
                   ))}
                 </div>
               </div>
-            </button>
+            </Link>
           </motion.article>
         ))}
       </section>

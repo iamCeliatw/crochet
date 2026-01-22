@@ -3,15 +3,20 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
+import { generateHomeMetadata } from "@/lib/seo";
 import "../globals.css";
-
-export const metadata: Metadata = {
-  title: "Crochet Portfolio",
-  description: "Crochet Portfolio",
-};
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return generateHomeMetadata(locale);
 }
 
 export default async function LocaleLayout({
