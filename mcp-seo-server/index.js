@@ -180,7 +180,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           },
           baseUrl: {
             type: "string",
-            description: "網站基礎 URL（例如：https://yourdomain.com）",
+            description: "網站基礎 URL（例如：https://crochet-celia.vercel.app）",
           },
         },
         required: ["projectId", "locale", "baseUrl"],

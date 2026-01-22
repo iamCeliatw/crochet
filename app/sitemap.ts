@@ -3,7 +3,7 @@ import { projects } from "@/data/project";
 import { routing } from "@/i18n/routing";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://yourdomain.com";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://crochet-celia.vercel.app";
   const urls: MetadataRoute.Sitemap = [];
 
   // 首頁（所有語言）
