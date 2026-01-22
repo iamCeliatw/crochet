@@ -26,7 +26,7 @@ export const projects: Project[] = [
       ja: "ドリンクホルダー / デイリーユース",
     },
     materials: {
-      "zh-TW": "手混線、5mm 勾針",
+      "zh-TW": "手混線、5mm 鉤針",
       en: "Hand-mixed yarn, 5mm crochet hook",
       ja: "ハンドミックス糸、5mmかぎ針",
     },
@@ -59,7 +59,7 @@ export const projects: Project[] = [
       ja: "コースター / ホームユース",
     },
     materials: {
-      "zh-TW": "四股棉線、3mm 勾針",
+      "zh-TW": "四股棉線、3mm 鉤針",
       en: "4-ply cotton yarn, 3mm crochet hook",
       ja: "4本撚りコットン糸、3mmかぎ針",
     },
@@ -92,7 +92,7 @@ export const projects: Project[] = [
       ja: "アクセサリー / デイリーユース",
     },
     materials: {
-      "zh-TW": "四股棉線、3mm 勾針",
+      "zh-TW": "四股棉線、3mm 鉤針",
       en: "4-ply cotton yarn, 3mm crochet hook",
       ja: "4本撚りコットン糸、3mmかぎ針",
     },
@@ -125,7 +125,7 @@ export const projects: Project[] = [
       ja: "イヤホンケース / デイリーユース",
     },
     materials: {
-      "zh-TW": "四股棉線、3mm 勾針",
+      "zh-TW": "四股棉線、3mm 鉤針",
       en: "4-ply cotton yarn, 3mm crochet hook",
       ja: "4本撚りコットン糸、3mmかぎ針",
     },
@@ -158,7 +158,7 @@ export const projects: Project[] = [
       ja: "ヘアアクセサリー / デイリーユース",
     },
     materials: {
-      "zh-TW": "四股棉線、3mm 勾針",
+      "zh-TW": "四股棉線、3mm 鉤針",
       en: "4-ply cotton yarn, 3mm crochet hook",
       ja: "4本撚りコットン糸、3mmかぎ針",
     },
@@ -191,7 +191,7 @@ export const projects: Project[] = [
       ja: "イヤホンケース / デイリーユース",
     },
     materials: {
-      "zh-TW": "四股棉線、2.5mm 勾針",
+      "zh-TW": "四股棉線、2.5mm 鉤針",
       en: "4-ply cotton yarn, 2.5mm crochet hook",
       ja: "4本撚りコットン糸、2.5mmかぎ針",
     },
@@ -223,7 +223,7 @@ export const projects: Project[] = [
       ja: "ヘアアクセサリー / デイリーユース",
     },
     materials: {
-      "zh-TW": "四股棉線、2.5mm 勾針",
+      "zh-TW": "四股棉線、2.5mm 鉤針",
       en: "4-ply cotton yarn, 2.5mm crochet hook",
       ja: "4本撚りコットン糸、2.5mmかぎ針",
     },

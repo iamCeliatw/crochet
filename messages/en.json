@@ -20,7 +20,10 @@
     "close": "Close",
     "closeDetail": "Close Detail",
     "switchToImage": "Switch to image {index}",
-    "order": "Order Inquiry"
+    "order": "Order Inquiry",
+    "back": "Back",
+    "previousImage": "Previous",
+    "nextImage": "Next"
   },
   "order": {
     "title": "Order Inquiry",

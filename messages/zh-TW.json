@@ -20,7 +20,10 @@
     "close": "關閉",
     "closeDetail": "關閉詳情",
     "switchToImage": "切換到第 {index} 張圖片",
-    "order": "我想訂購"
+    "order": "我想訂購",
+    "back": "返回",
+    "previousImage": "上一張",
+    "nextImage": "下一張"
   },
   "order": {
     "title": "訂購詢問",
