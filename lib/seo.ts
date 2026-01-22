@@ -14,7 +14,7 @@ type Project = {
   colorPalette: string[];
 };
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://yourdomain.com";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://crochet-celia.vercel.app";
 const siteName = "小小鉤針日常";
 const defaultDescription =
   "翻動線材的瞬間，日常也能被柔軟包圍。手作鉤針作品展示與訂購。";
