@@ -13,6 +13,171 @@ type Project = {
 
 export const projects: Project[] = [
   {
+    id: 12,
+    slug: "latte-flower-drawstring-pouch",
+    title: {
+      "zh-TW": "拿鐵花繩束口小袋",
+      en: "Latte Flower Drawstring Pouch",
+      ja: "ラテカラーのフラワー巾着ポーチ",
+    },
+    category: {
+      "zh-TW": "束口小袋 / 日常使用",
+      en: "Drawstring Pouch / Daily Use",
+      ja: "巾着ポーチ / デイリーユース",
+    },
+    materials: {
+      "zh-TW": "四股棉線、3mm 鉤針",
+      en: "4-ply cotton yarn, 3mm crochet hook",
+      ja: "4本撚りコットン糸、3mmかぎ針",
+    },
+    timeSpent: {
+      "zh-TW": "約 2.5 小時",
+      en: "About 2.5 hours",
+      ja: "約2.5時間",
+    },
+    description: {
+      "zh-TW":
+        "拿鐵棕的網格袋身搭配芥末黃花朵拉繩，像把秋日暖陽收進掌心。小巧卻實用，耳機、飾品或隨身小物都能被溫柔地收好。",
+      en: "A tiny drawstring pouch in latte brown with mustard flower cord ends. The open mesh texture keeps it light, while the rounded shape neatly holds earbuds, rings, or other little essentials.",
+      ja: "ラテブラウンのメッシュ袋に、マスタードイエローの花モチーフ紐を合わせた小さな巾着。軽やかなのに実用的で、イヤホンやアクセサリーなどの小物をやさしくまとめてくれます。",
+    },
+    coverImage: "/projects/project-12_1.jpeg",
+    images: ["/projects/project-12_1.jpeg", "/projects/project-12_2.jpeg"],
+    colorPalette: ["#AA9383", "#E5A92C", "#F3EEE9"],
+  },
+  {
+    id: 11,
+    slug: "ivory-lace-mini-tote-charm",
+    title: {
+      "zh-TW": "象牙白飲料提袋",
+      en: "Ivory Drink Bag",
+      ja: "アイボリーのドリンクバッグ",
+    },
+    category: {
+      "zh-TW": "飲料提袋 / 日常使用",
+      en: "Drink Bag / Daily Use",
+      ja: "ドリンクバッグ / デイリーユース",
+    },
+    materials: {
+      "zh-TW": "空心棉線、3mm 鉤針",
+      en: "Hollow cotton yarn, 3mm crochet hook",
+      ja: "空洞コットン糸、3mmかぎ針",
+    },
+    timeSpent: {
+      "zh-TW": "約 1 小時",
+      en: "About 1 hour",
+      ja: "約1時間",
+    },
+    description: {
+      "zh-TW":
+        "小小一只象牙白飲料提袋，中央鏤空花樣帶著細緻復古感。掛在包包或鑰匙圈上，就像替日常加上一點安靜又可愛的手作語氣。",
+      en: "An ivory drink bag with delicate openwork lace through the center. Compact and elegant, it brings a quiet handcrafted touch to bags, keyrings, or any everyday carry setup.",
+      ja: "中央の透かし編みが印象的な、アイボリー色のドリンクバッグ。小ぶりで上品な佇まいが、バッグやキーリングに手編みのやさしさを添えてくれます。",
+    },
+    coverImage: "/projects/project-11_1.jpeg",
+    images: ["/projects/project-11_1.jpeg", "/projects/project-11_2.jpeg"],
+    colorPalette: ["#E9E7E0", "#D8D6CF", "#F6F4EE"],
+  },
+  {
+    id: 10,
+    slug: "boho-horse-keychain",
+    title: {
+      "zh-TW": "波西彩條小馬鑰匙圈",
+      en: "Boho Stripe Horse Keychain",
+      ja: "ボヘミアンストライプの馬キーホルダー",
+    },
+    category: {
+      "zh-TW": "鑰匙圈 / 日常使用",
+      en: "Keychain / Daily Use",
+      ja: "キーホルダー / デイリーユース",
+    },
+    materials: {
+      "zh-TW": "四股棉線、3mm 鉤針",
+      en: "4-ply cotton yarn, 3mm crochet hook",
+      ja: "4本撚りコットン糸、3mmかぎ針",
+    },
+    timeSpent: {
+      "zh-TW": "約 3 小時",
+      en: "About 3 hours",
+      ja: "約3時間",
+    },
+    description: {
+      "zh-TW":
+        "帶著民族感彩條的小馬吊飾，紅、藍、綠、白交錯得很有節奏，尾巴流蘇更添俏皮。掛在鑰匙或包包上，每次拿起來都會被它可愛到。",
+      en: "A playful horse keychain with boho-inspired red, blue, green, and white stripes. Finished with a tassel tail and tiny floral detail, it adds bold handmade character to keys or bags.",
+      ja: "赤・青・緑・白のストライプが映える、ボヘミアンテイストの馬キーホルダー。しっぽのタッセルと小さなお花モチーフがアクセントで、鍵やバッグに楽しい手編み感をプラスします。",
+    },
+    coverImage: "/projects/project-10_1.jpeg",
+    images: ["/projects/project-10_1.jpeg", "/projects/project-10_2.jpeg"],
+    colorPalette: ["#AF3B2B", "#3A66B8", "#2F7A66", "#F5F3EC"],
+  },
+  {
+    id: 9,
+    slug: "lavender-frill-hair-tie",
+    title: {
+      "zh-TW": "薰霧紫波浪綁帶髮飾",
+      en: "Lavender Frill Hair Tie",
+      ja: "ラベンダーフリルのリボンヘアアクセ",
+    },
+    category: {
+      "zh-TW": "髮飾 / 日常使用",
+      en: "Hair Accessory / Daily Use",
+      ja: "ヘアアクセサリー / デイリーユース",
+    },
+    materials: {
+      "zh-TW": "柔霧手混線、5mm 鉤針",
+      en: "Soft fluffy yarn, 5mm crochet hook",
+      ja: "ふんわりファンシーヤーン、5mmかぎ針",
+    },
+    timeSpent: {
+      "zh-TW": "約 1.5 小時",
+      en: "About 1.5 hours",
+      ja: "約1.5時間",
+    },
+    description: {
+      "zh-TW":
+        "輕柔的薰霧紫配上立體波浪邊，綁起來像把一小段晚霞繫在髮間。柔軟線材貼膚不刺癢，日常綁馬尾或低辮都能多一點溫柔層次。",
+      en: "A delicate lavender hair tie with sculpted frill edges and long ribbon tails. Soft to the touch and gentle on hair, it adds a dreamy handcrafted accent to ponytails, braids, or simple everyday styles.",
+      ja: "やわらかなラベンダー色に、立体感のあるフリルを合わせたリボンヘアアクセ。肌あたりのやさしい糸で、ポニーテールや三つ編みに結ぶだけで手編みならではの温かみが生まれます。",
+    },
+    coverImage: "/projects/project-9_1.jpeg",
+    images: ["/projects/project-9_1.jpeg", "/projects/project-9_2.jpeg"],
+    colorPalette: ["#D1C2CF", "#BFAFBE", "#EEE7EB"],
+  },
+  {
+    id: 8,
+    slug: "blush-mesh-cup-holder",
+    title: {
+      "zh-TW": "奶霜粉網格飲料提袋",
+      en: "Blush Mesh Cup Holder",
+      ja: "ミルキーピンクのメッシュドリンクホルダー",
+    },
+    category: {
+      "zh-TW": "飲料提袋 / 日常使用",
+      en: "Cup Holder / Daily Use",
+      ja: "ドリンクホルダー / デイリーユース",
+    },
+    materials: {
+      "zh-TW": "混紡毛絨線、6mm 鉤針",
+      en: "Blended fluffy yarn, 6mm crochet hook",
+      ja: "ミックスファンシーヤーン、6mmかぎ針",
+    },
+    timeSpent: {
+      "zh-TW": "約 2 小時",
+      en: "About 2 hours",
+      ja: "約2時間",
+    },
+    description: {
+      "zh-TW":
+        "奶霜白與櫻花粉交織出的網格提袋，輕盈卻有存在感。柔軟線材摸起來很療癒，提著冰咖啡出門時，整天都像被溫柔陪著。",
+      en: "A cozy mesh cup holder woven in creamy white and blush pink. Lightweight yet eye-catching, with a soft fluffy texture that feels comforting in hand. A handcrafted daily companion for coffee runs and easy strolls.",
+      ja: "ミルキーホワイトと淡いピンクが重なる、やさしい雰囲気のメッシュドリンクホルダー。軽やかなのに存在感があり、ふわっとした手触りで持つたびに心がほどけます。毎日のコーヒー時間に寄り添う手編みの一点です。",
+    },
+    coverImage: "/projects/project-8_1.jpeg",
+    images: ["/projects/project-8_1.jpeg", "/projects/project-8_2.jpeg"],
+    colorPalette: ["#F6EDE6", "#F2CFCB", "#B2AAA2"],
+  },
+  {
     id: 7,
     slug: "mesh-cup-holder",
     title: {

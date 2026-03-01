@@ -45,7 +45,10 @@ export default function AdminAnalyticsPage() {
         const url = filterType === "all" 
           ? "/api/analytics/logs?limit=100"
           : `/api/analytics/logs?limit=100&type=${filterType}`;
-        const response = await fetch(url);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 12000);
+        const response = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeoutId);
         const data = await response.json();
         setClickLogs(data.logs || []);
       } catch (error) {
@@ -80,8 +83,9 @@ export default function AdminAnalyticsPage() {
     );
   }
 
-  const totalProjectViews = Object.values(analytics.projectViews).reduce(
-    (sum: number, count) => sum + (count as number),
+  const projectViews = analytics.projectViews ?? {};
+  const totalProjectViews = Object.values(projectViews).reduce(
+    (sum: number, count) => sum + Number(count),
     0
   );
 
@@ -124,9 +128,9 @@ export default function AdminAnalyticsPage() {
           <h2 className="mb-4 text-xl font-semibold text-[#333333]">
             作品點擊排行
           </h2>
-          {Object.keys(analytics.projectViews).length > 0 ? (
+          {Object.keys(projectViews).length > 0 ? (
             <div className="space-y-3">
-              {Object.entries(analytics.projectViews)
+              {Object.entries(projectViews)
                 .sort(([, a], [, b]) => (b as number) - (a as number))
                 .map(([projectId, views]) => (
                   <div

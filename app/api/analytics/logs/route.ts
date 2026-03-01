@@ -5,6 +5,17 @@ const KEYS = {
   CLICK_LOGS: "analytics:click_logs",
 };
 
+const REDIS_TIMEOUT_MS = 8000; // 整體請求超時，避免正式環境卡住
+
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error(`${label} timeout after ${ms}ms`)), ms)
+    ),
+  ]);
+}
+
 // 獲取 Redis 客戶端（複製自 analytics/route.ts）
 async function getRedisClient() {
   const redisUrl = process.env.REDIS_URL;
@@ -39,7 +50,11 @@ export async function GET(request: NextRequest) {
     const type = searchParams.get("type"); // 可選：page_view, project_view, order_submission
     const projectId = searchParams.get("projectId");
 
-    const redis = await getRedisClient();
+    const redis = await withTimeout(
+      getRedisClient(),
+      REDIS_TIMEOUT_MS,
+      "getRedisClient"
+    );
 
     if (!redis) {
       return NextResponse.json(
@@ -54,9 +69,13 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // 從 Redis 讀取
+    // 從 Redis 讀取（含超時）
     const logKey = KEYS.CLICK_LOGS;
-    const rawLogs = await redis.lRange(logKey, 0, limit * 2); // 多取一些以便過濾
+    const rawLogs = await withTimeout(
+      redis.lRange(logKey, 0, limit * 2),
+      REDIS_TIMEOUT_MS,
+      "lRange"
+    ); // 多取一些以便過濾
 
     if (!rawLogs || !Array.isArray(rawLogs)) {
       return NextResponse.json({

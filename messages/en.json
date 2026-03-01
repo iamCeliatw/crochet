@@ -4,6 +4,13 @@
     "brandSubtitle": "Crochet",
     "instagram": "Instagram"
   },
+  "hero": {
+    "tagline": "In the moment of turning the yarn, everyday life can be embraced by softness.",
+    "cta": {
+      "view": "See Projects ↓",
+      "order": "Custom Order"
+    }
+  },
   "intro": {
     "subtitle": "Crochet Portfolio",
     "title": "Handmade Crochet",
@@ -14,7 +21,8 @@
     "timeSpent": "Time Spent",
     "notes": "Notes",
     "listLabel": "Project List",
-    "colorPalette": "Yarn Palette"
+    "colorPalette": "Yarn Palette",
+    "newBadge": "New"
   },
   "actions": {
     "close": "Close",
@@ -49,5 +57,14 @@
     "earphoneCase": "Earphone Case / Daily Use",
     "accessory": "Accessory / Daily Use",
     "coaster": "Coaster / Home Use"
+  },
+  "footer": {
+    "brand": "Crochet Daily",
+    "tagline": "Crafting warmth, one stitch at a time",
+    "rights": "© 2024 Crochet Daily. All rights reserved.",
+    "social": {
+      "instagram": "Instagram",
+      "line": "LINE"
+    }
   }
 }

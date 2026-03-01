@@ -36,10 +36,17 @@ export const trackOrderSubmission = async () => {
   }
 };
 
+const FETCH_TIMEOUT_MS = 12000; // 正式環境 Redis 慢/不可達時不要無限等
+
 export const getAnalytics = async () => {
   try {
-    const response = await fetch("/api/analytics");
-    return await response.json();
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+    const response = await fetch("/api/analytics", { signal: controller.signal });
+    clearTimeout(timeoutId);
+    const data = await response.json();
+    if (!response.ok) return null; // 500 / timeout 等讓 admin 顯示「無法載入數據」
+    return data;
   } catch (error) {
     console.error("Failed to get analytics:", error);
     return null;
