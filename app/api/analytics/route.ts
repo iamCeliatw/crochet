@@ -10,6 +10,17 @@ const KEYS = {
   CLICK_LOGS: "analytics:click_logs", // 點擊記錄列表
 };
 
+const REDIS_TIMEOUT_MS = 8000; // 整體請求超時，避免正式環境卡住
+
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error(`${label} timeout after ${ms}ms`)), ms)
+    ),
+  ]);
+}
+
 // Redis 客戶端單例
 let redisClient: ReturnType<typeof createRedisClient> | null = null;
 let redisConnectionFailed = false; // 記錄連接是否失敗，避免重複嘗試
@@ -179,7 +190,11 @@ export async function POST(request: NextRequest) {
 // GET: 讀取分析數據
 export async function GET() {
   try {
-    const redis = await getRedisClient();
+    const redis = await withTimeout(
+      getRedisClient(),
+      REDIS_TIMEOUT_MS,
+      "getRedisClient"
+    );
 
     if (!redis) {
       return NextResponse.json(
@@ -191,22 +206,23 @@ export async function GET() {
       );
     }
 
-    // 從 Redis 讀取數據
-    const lastReset = (await redis.get(KEYS.LAST_RESET)) || new Date().toISOString();
-    const pageViews = parseInt((await redis.get(KEYS.PAGE_VIEWS)) || "0");
+    // 從 Redis 讀取數據（含超時）
+    const lastReset = (await withTimeout(redis.get(KEYS.LAST_RESET), REDIS_TIMEOUT_MS, "get(LAST_RESET)")) || new Date().toISOString();
+    const pageViews = parseInt((await withTimeout(redis.get(KEYS.PAGE_VIEWS), REDIS_TIMEOUT_MS, "get(PAGE_VIEWS)")) || "0");
     const orderSubmissions = parseInt(
-      (await redis.get(KEYS.ORDER_SUBMISSIONS)) || "0"
+      (await withTimeout(redis.get(KEYS.ORDER_SUBMISSIONS), REDIS_TIMEOUT_MS, "get(ORDER_SUBMISSIONS)")) || "0"
     );
 
     // 讀取所有專案點擊數
-    const projectViewsKeys = await redis.keys(`${KEYS.PROJECT_VIEWS_PREFIX}*`);
+    const projectViewsKeys = await withTimeout(redis.keys(`${KEYS.PROJECT_VIEWS_PREFIX}*`), REDIS_TIMEOUT_MS, "keys");
     const projectViews: Record<number, number> = {};
 
-    for (const key of projectViewsKeys) {
+    const getPromises = projectViewsKeys.map(async (key) => {
       const projectId = parseInt(key.replace(KEYS.PROJECT_VIEWS_PREFIX, ""));
       const views = parseInt((await redis.get(key)) || "0");
       projectViews[projectId] = views;
-    }
+    });
+    await withTimeout(Promise.all(getPromises), REDIS_TIMEOUT_MS, "projectViews");
 
     return NextResponse.json({
       lastReset,
