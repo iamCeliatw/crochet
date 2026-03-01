@@ -70,17 +70,31 @@ git push origin uat
 - 優化文案：`docs: improve project descriptions`
 - 多項更新：`feat: update crochet projects`
 
-### 步驟 5: 回報結果
+### 步驟 5: 自動建立 PR 到 main
+
+```bash
+# 建立從 uat 到 main 的 PR（如果已存在則顯示既有 PR）
+gh pr create --base main --head uat --title "chore: sync uat to main" --body "Auto-created by deploy skill"
+```
+
+執行前檢查：
+- ✅ 已安裝並登入 GitHub CLI（`gh auth status`）
+- ✅ `uat` 分支已成功 push 到遠端
+- ✅ 沒有既有的 `uat -> main` 開啟中 PR（若有，改為回報 PR 連結）
+
+### 步驟 6: 回報結果
 
 **成功時**：
 ```
 ✅ 部署成功！
 
 📝 Commit: feat: add elegant lace hairband project
-📤 已推送到 GitHub (main branch)
+📤 已推送到 GitHub (uat branch)
+🔀 已自動建立 PR: uat → main
 🚀 Vercel 已收到更新，正在部署...
 
 🔗 查看部署狀態: https://vercel.com/dashboard
+🔗 PR 連結: https://github.com/[owner]/[repo]/pull/[number]
 🔗 網站將在 1-2 分鐘後更新
 ```
 
@@ -139,7 +153,23 @@ git pull origin main
 git push origin uat
 ```
 
-### 情況 4: 未設定遠端倉庫
+### 情況 4: 自動建立 PR 失敗
+
+```
+⚠️ 已完成 push，但建立 PR 失敗
+
+可能原因：
+1. 尚未安裝或登入 GitHub CLI（gh）
+2. 已存在相同 base/head 的開啟中 PR
+3. 權限不足（無法建立 PR）
+
+可手動執行：
+gh auth status
+gh pr list --base main --head uat
+gh pr create --base main --head uat
+```
+
+### 情況 5: 未設定遠端倉庫
 
 ```
 ❌ 未設定 Git 遠端倉庫
@@ -184,10 +214,12 @@ git remote -v
 ✅ git add . - 完成
 ✅ git commit -m "feat: add elegant lace hairband project" - 完成
 ✅ git push origin uat - 完成
+✅ gh pr create --base main --head uat - 完成
 
 🎉 部署成功！
 
 Vercel 正在建置中，預計 1-2 分鐘後上線。
+PR 已建立： https://github.com/[owner]/[repo]/pull/[number]
 🔗 https://vercel.com/dashboard
 ```
 
@@ -195,7 +227,7 @@ Vercel 正在建置中，預計 1-2 分鐘後上線。
 
 如果用戶說「直接部署」或「快速部署」：
 - 跳過確認步驟
-- 直接執行 git add、commit、push
+- 直接執行 git add、commit、push、建立 PR
 - 回報結果
 
 ## 與其他 Skills 的整合

@@ -45,9 +45,9 @@ export default function ProjectDetailPage({ project }: ProjectDetailPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#333333]">
-      {/* Back Button */}
-      <div className="mx-auto max-w-6xl px-4 pt-6 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#F8F5F0] text-[#1E1510]">
+      {/* Back Button — top padding clears the fixed header (~56px) */}
+      <div className="mx-auto max-w-6xl px-4 pt-20 sm:px-6 sm:pt-24 lg:px-8">
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm text-[#666666] transition hover:text-[#333333]"

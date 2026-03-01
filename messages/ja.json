@@ -4,6 +4,13 @@
     "brandSubtitle": "Crochet",
     "instagram": "Instagram"
   },
+  "hero": {
+    "tagline": "糸を動かす瞬間、日常も柔らかさに包まれる。",
+    "cta": {
+      "view": "作品を見る ↓",
+      "order": "オーダーメイド"
+    }
+  },
   "intro": {
     "subtitle": "Crochet Portfolio",
     "title": "手作りかぎ針編み",
@@ -14,7 +21,8 @@
     "timeSpent": "制作時間",
     "notes": "制作ノート",
     "listLabel": "作品リスト",
-    "colorPalette": "カラーパレット"
+    "colorPalette": "カラーパレット",
+    "newBadge": "新着"
   },
   "actions": {
     "close": "閉じる",
@@ -49,5 +57,14 @@
     "earphoneCase": "イヤホンケース / 日常使用",
     "accessory": "アクセサリー / 日常使用",
     "coaster": "コースター / ホームユース"
+  },
+  "footer": {
+    "brand": "小さなかぎ針編み日常",
+    "tagline": "一針一針で、温かい日常を編む",
+    "rights": "© 2024 小さなかぎ針編み日常. All rights reserved.",
+    "social": {
+      "instagram": "Instagram",
+      "line": "LINE"
+    }
   }
 }
